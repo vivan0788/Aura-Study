@@ -70,7 +70,7 @@ ai-instant-insights-agent/
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/ai-instant-insights-agent.git
+git clone https://github.com/vivan0788/ai-instant-insights-agent.git
 
 cd ai-instant-insights-agent
 ```
@@ -140,7 +140,7 @@ python app.py
 Backend will run at
 
 ```
-http://127.0.0.1:5000
+https://aura-study.onrender.com
 ```
 
 ---
@@ -156,7 +156,7 @@ frontend/js/app.js
 Update the backend URL.
 
 ```javascript
-const BACKEND_URL = "http://127.0.0.1:5000/api";
+const BACKEND_URL = "https://aura-study.onrender.com/api";
 ```
 
 Now open
@@ -334,10 +334,10 @@ This project is licensed under the **MIT License**.
 
 **Avinash Sahani**
 
-💻 Passionate Software Developer & B.Tech CSE Student
+💻 Passionate Software Developer & B.Tech CS Student
 
 GitHub:
-https://github.com/avinash08
+https://github.com/vivan0788
 
 ---
 

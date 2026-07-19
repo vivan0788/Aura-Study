@@ -33,7 +33,7 @@
 - Gunicorn
 
 ### AI Integration
-- OpenAI API *(or Gemini / Hugging Face API)*
+- OpenAI API 
 
 ### Deployment
 - Vercel (Frontend)
@@ -70,9 +70,9 @@ ai-instant-insights-agent/
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/vivan0788/ai-instant-insights-agent.git
+git clone https://github.com/vivan0788/Aura-Study.git
 
-cd ai-instant-insights-agent
+cd aura-study
 ```
 
 ---

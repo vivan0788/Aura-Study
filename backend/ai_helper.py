@@ -1,12 +1,12 @@
 # backend/ai_helper.py
 import os
-from openai import OpenAI
+import openai
 from dotenv import load_dotenv
 
 load_dotenv()
 
-# Initialize OpenAI Client
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# Explicitly assign api_key globally to prevent client class init mismatch
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def get_ai_insights_and_questions(text):
     """
@@ -19,11 +19,12 @@ def get_ai_insights_and_questions(text):
         2. A list of 3 relevant practice questions based on the content.
 
         Text Content:
-        {text[:4000]}  # Limiting text to avoid token overflow issues
+        {text[:4000]}
         """
 
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",  # Fast and cost-effective for hackathons
+        # Using direct completion module bypassing the client class initialization bug
+        response = openai.chat.completions.create(
+            model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": "You are an expert AI academic assistant."},
                 {"role": "user", "content": prompt}
@@ -32,12 +33,8 @@ def get_ai_insights_and_questions(text):
         )
         
         raw_output = response.choices[0].message.content
-        
-        # Simple parsing logic (Hackathon proof basic splitting)
-        # Real-world apps use JSON mode, but parsing strings is faster to tweak
         lines = [line.strip() for line in raw_output.split('\n') if line.strip()]
         
-        # Fallback agar model direct layout me de
         insights = [line for line in lines if line.startswith(('-', '*', '1.', '2.', '3.', '4.', '5.'))][:5]
         questions = [line for line in lines if '?' in line][:3]
         
@@ -49,14 +46,14 @@ def get_ai_insights_and_questions(text):
         return insights, questions
     except Exception as e:
         print(f"[AI Helper Error]: {e}")
-        return ["Error generating insights due to API limits."], ["Error generating questions."]
+        return [f"Error generating insights: {str(e)}"], ["Error generating questions."]
 
 def answer_chat_query(doc_text, user_message):
     """
     Document ke text ke context mein user ke question ka answer deta hai.
     """
     try:
-        response = client.chat.completions.create(
+        response = openai.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": f"You are a helpful AI agent. Answer the user's questions strictly based on this document text:\n\n{doc_text[:3000]}"},

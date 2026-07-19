@@ -12,7 +12,7 @@ CORS(app)  # Enables cross-origin requests from Vercel frontend
 # In-memory temporary storage (No Database setup required for hackathon speed!)
 document_storage = {}
 
-@app.route('/api/upload', models=['POST'])
+@app.route('/api/upload', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
         return jsonify({"message": "No file uploaded"}), 400

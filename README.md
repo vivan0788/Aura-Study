@@ -29,7 +29,8 @@ ai-instant-assistant/
 │   ├── index.html                  # Main Web Dashboard
 │   └── vercel.json                 # Vercel Deployment & URL Routing Config
 └── README.md                       # Comprehensive Project Documentation
-## 🛠️ Local Setup & Installation
+
+ 🛠️ Local Setup & Installation
 1. Prerequisites
 Python 3.10 or higher installed.
 

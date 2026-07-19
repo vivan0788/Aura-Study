@@ -1,93 +1,348 @@
-# ⚡ AI Instant Insights Agent (Aura Study)
+# ⚡ Aura Study – AI Instant Insights Agent
 
-An AI-powered document analysis and research assistant built for Hackathons. This application allows users to upload any PDF or image file to instantly extract core insights, generate interactive mock practice questions, and chat dynamically with the document context in real-time.
-
----
-
-## 🚀 Key Features
-- **Zero Friction UI:** Drag & Drop interface to upload PDFs and Document Images.
-- **Smart Insights Generation:** Automatically parses document text and summarizes 4-5 core highlights.
-- **Mock Assessment:** Dynamically compiles 3 context-relevant practice questions for exam or review prep.
-- **Contextual Document Chat:** Interactive chat window to ask specific queries based strictly on the uploaded file contents.
-- **Production-Ready & Optimized:** High-performance architecture built for fast responses during live judging.
+> **An AI-powered document analysis and research assistant built for hackathons.**
+>
+> Upload any **PDF** or **image** to instantly extract key insights, generate practice questions, and chat with the document using AI.
 
 ---
 
-## 📂 Project Architecture
+## ✨ Features
+
+- 📄 Upload PDF and document images
+- ⚡ AI-powered document summarization
+- 🧠 Extracts 4–5 key insights automatically
+- 📝 Generates context-based mock practice questions
+- 💬 Interactive AI chat based on uploaded document
+- 🎨 Clean, responsive, and modern user interface
+- 🚀 Fast and optimized for hackathon demonstrations
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- HTML5
+- CSS3
+- JavaScript (Vanilla)
+
+### Backend
+- Python
+- Flask
+- Flask-CORS
+- PyPDF
+- Gunicorn
+
+### AI Integration
+- OpenAI API *(or Gemini / Hugging Face API)*
+
+### Deployment
+- Vercel (Frontend)
+- Render (Backend)
+
+---
+
+## 📂 Project Structure
 
 ```text
-ai-instant-assistant/
+ai-instant-insights-agent/
+│
 ├── backend/
-│   ├── app.py                      # Flask Application Server with CORS & Routes
-│   ├── ai_helper.py                # AI Inference Service Logic (OpenAI/Gemini/HF)
-│   └── requirements.txt            # Production Level Backend Dependencies
+│   ├── app.py
+│   ├── ai_helper.py
+│   ├── requirements.txt
+│   └── .env
+│
 ├── frontend/
+│   ├── index.html
 │   ├── css/
-│   │   └── style.css               # Premium Modern Dark-Themed UI Layout
+│   │   └── style.css
 │   ├── js/
-│   │   └── app.js                  # Asynchronous State Controller & API Fetch Handler
-│   ├── index.html                  # Main Web Dashboard
-│   └── vercel.json                 # Vercel Deployment & URL Routing Config
-└── README.md                       # Comprehensive Project Documentation
+│   │   └── app.js
+│   └── vercel.json
+│
+└── README.md
+```
 
- 🛠️ Local Setup & Installation
-1. Prerequisites
-Python 3.10 or higher installed.
+---
 
-A valid API Key (OpenAI).
+## 🚀 Getting Started
 
-2. Backend Configuration
-Navigate to the backend directory and set up environment values:
+### 1️⃣ Clone the Repository
 
-Bash
+```bash
+git clone https://github.com/your-username/ai-instant-insights-agent.git
+
+cd ai-instant-insights-agent
+```
+
+---
+
+## ⚙️ Backend Setup
+
+Move to the backend directory.
+
+```bash
 cd backend
+```
+
+Create a virtual environment.
+
+```bash
 python -m venv .venv
-source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
+```
+
+Activate it.
+
+### Windows
+
+```bash
+.venv\Scripts\activate
+```
+
+### Linux / macOS
+
+```bash
+source .venv/bin/activate
+```
+
+Install dependencies.
+
+```bash
 pip install -r requirements.txt
-Create a .env file inside the backend/ directory:
+```
 
-Plaintext
-OPENAI_API_KEY=your_actual_api_key_here
-# OR GEMINI_API_KEY / HF_API_KEY depending on your selected helper script
-Run the backend server locally:
+---
 
-Bash
+## 🔑 Environment Variables
+
+Create a `.env` file inside the **backend** folder.
+
+```env
+OPENAI_API_KEY=your_openai_api_key
+
+# OR
+
+GEMINI_API_KEY=your_gemini_api_key
+
+# OR
+
+HF_API_KEY=your_huggingface_api_key
+```
+
+---
+
+## ▶️ Run Backend
+
+```bash
 python app.py
-The local server will spin up on http://127.0.0.1:5000
-3. Frontend Configuration
-Open frontend/js/app.js and ensure the API base variable matches your active backend:
+```
 
-JavaScript
-const BACKEND_URL = "[http://127.0.0.1:5000/api](http://127.0.0.1:5000/api)";
-Simply launch frontend/index.html in any web browser.
+Backend will run at
 
-🌐 Production Cloud Deployment Reference
-🔹 Backend Deployment (Render)
-Create a new Web Service connected to your GitHub Repository on Render.
+```
+http://127.0.0.1:5000
+```
 
-Set Root Directory to backend.
+---
 
-Set Build Command to pip install -r requirements.txt.
+## 💻 Frontend Setup
 
-Set Start Command to gunicorn app:app.
+Open
 
-Go to the Environment tab and add your required Secret API Key (e.g., OPENAI_API_KEY, GEMINI_API_KEY, or HF_API_KEY).
+```
+frontend/js/app.js
+```
 
-Copy the primary Live URL generated by Render (e.g., https://aura-study.onrender.com).
-Frontend Deployment (Vercel)
-Update frontend/js/app.js to point towards your production backend server:
+Update the backend URL.
 
-JavaScript
-const BACKEND_URL = "[https://aura-study.onrender.com/api](https://aura-study.onrender.com/api)";
-Link the repository to Vercel.
+```javascript
+const BACKEND_URL = "http://127.0.0.1:5000/api";
+```
 
-In Project Settings, change the Root Directory to frontend.
+Now open
 
-Trigger the deployment! Vercel will safely serve the static site via the vercel.json configurations.
+```
+frontend/index.html
+```
 
-📄 Tech Stack Used
-Frontend: Semantic HTML5, CSS3 Custom Layouts, Modern Native Vanilla JavaScript (Async/Await Fetch).
+in your browser.
 
-Backend: Python, Flask (Microframework), Flask-CORS, PyPDF (Streamlined PDF Extraction), Gunicorn (Production WSGI Server).
+---
 
-Developed under Hackathon Sandbox Compliance parameters. Free to adapt and upscale! 🚀
+# 🌍 Deployment
+
+## 🚀 Backend (Render)
+
+1. Push the project to GitHub.
+2. Create a **Render Web Service**.
+3. Select the repository.
+4. Set:
+
+**Root Directory**
+
+```
+backend
+```
+
+**Build Command**
+
+```bash
+pip install -r requirements.txt
+```
+
+**Start Command**
+
+```bash
+gunicorn app:app
+```
+
+Add your API key inside **Environment Variables**.
+
+Example
+
+```
+OPENAI_API_KEY=xxxxxxxx
+```
+
+After deployment you'll get something like
+
+```
+https://your-app.onrender.com
+```
+
+---
+
+## 🚀 Frontend (Vercel)
+
+Update
+
+```javascript
+const BACKEND_URL = "https://your-app.onrender.com/api";
+```
+
+Then
+
+- Import GitHub Repository
+- Set Root Directory
+
+```
+frontend
+```
+
+Deploy 🎉
+
+---
+
+## 📸 Application Workflow
+
+```text
+User Uploads PDF/Image
+          │
+          ▼
+Document Processing
+          │
+          ▼
+AI Analysis
+          │
+ ┌────────┼────────┐
+ ▼        ▼        ▼
+Summary  Questions  AI Chat
+          │
+          ▼
+ Display Results
+```
+
+---
+
+## 🎯 Use Cases
+
+- 📚 Students
+- 🏫 Teachers
+- 🎓 Exam Preparation
+- 📄 Research Papers
+- 💼 Business Reports
+- 🧠 Quick Document Review
+
+---
+
+## 📦 Dependencies
+
+```
+Flask
+Flask-CORS
+PyPDF
+Gunicorn
+python-dotenv
+OpenAI
+```
+
+Install using
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 🔮 Future Improvements
+
+- 📄 Multiple PDF support
+- 🌐 OCR for scanned documents
+- 🎤 Voice interaction
+- 🌍 Multi-language support
+- 📥 Export summaries as PDF
+- ☁️ User authentication
+- 📚 Chat history
+- 📱 Progressive Web App (PWA)
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repository
+2. Create a new branch
+
+```bash
+git checkout -b feature-name
+```
+
+3. Commit your changes
+
+```bash
+git commit -m "Add new feature"
+```
+
+4. Push to GitHub
+
+```bash
+git push origin feature-name
+```
+
+5. Create a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+## 👨‍💻 Developer
+
+**Avinash Sahani**
+
+💻 Passionate Software Developer & B.Tech CSE Student
+
+GitHub:
+https://github.com/avinash08
+
+---
+
+## ⭐ Support
+
+If you found this project useful, please consider giving it a ⭐ on GitHub.
+
+Happy Coding! 🚀

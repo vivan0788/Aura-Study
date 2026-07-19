@@ -1,12 +1,15 @@
 # backend/ai_helper.py
 import os
-import openai
+from openai import OpenAI
 from dotenv import load_dotenv
 
 load_dotenv()
 
-# Explicitly assign api_key globally to prevent client class init mismatch
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# Instantiating client explicitly without dynamic argument wrappers to bypass proxy crash bug
+client = OpenAI(
+    api_key=os.getenv("OPENAI_API_KEY"),
+    http_client=None # Forces initialization to explicitly ignore proxy collision
+)
 
 def get_ai_insights_and_questions(text):
     """
@@ -22,8 +25,7 @@ def get_ai_insights_and_questions(text):
         {text[:4000]}
         """
 
-        # Using direct completion module bypassing the client class initialization bug
-        response = openai.chat.completions.create(
+        response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": "You are an expert AI academic assistant."},
@@ -39,21 +41,21 @@ def get_ai_insights_and_questions(text):
         questions = [line for line in lines if '?' in line][:3]
         
         if not insights:
-            insights = ["Document parsed successfully.", "Main summary concepts extracted."]
+            insights = ["Document parsed successfully.", "Main summary concepts extracted from content."]
         if not questions:
             questions = ["What is the main theme of this document?", "Can you summarize the core argument?"]
 
         return insights, questions
     except Exception as e:
         print(f"[AI Helper Error]: {e}")
-        return [f"Error generating insights: {str(e)}"], ["Error generating questions."]
+        return [f"Error generating insights framework: {str(e)}"], ["Error generating custom mock questions."]
 
 def answer_chat_query(doc_text, user_message):
     """
     Document ke text ke context mein user ke question ka answer deta hai.
     """
     try:
-        response = openai.chat.completions.create(
+        response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": f"You are a helpful AI agent. Answer the user's questions strictly based on this document text:\n\n{doc_text[:3000]}"},
@@ -62,4 +64,4 @@ def answer_chat_query(doc_text, user_message):
         )
         return response.choices[0].message.content
     except Exception as e:
-        return f"Sorry, I couldn't process that query. (Error: {str(e)})"
+        return f"Sorry, I couldn't process that query. (Error details: {str(e)})"

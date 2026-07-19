@@ -1,4 +1,4 @@
-const BACKEND_URL = "http://127.0.0.1:5000/api"; // Render link deploy hone par yahan change hoga
+const BACKEND_URL = "https://aura-study.onrender.com/api";
 let currentDocId = null;
 
 const dropZone = document.getElementById('drop-zone');
